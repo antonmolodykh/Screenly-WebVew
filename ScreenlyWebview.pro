@@ -3,18 +3,16 @@ TEMPLATE = app
 QT += qml quick webkit webkitwidgets dbus
 CONFIG += c++11
 
-SOURCES += main.cpp \
-    mainwindow.cpp \
-    view.cpp
-
-# RESOURCES += qml.qrc
+SOURCES += src/main.cpp \
+    src/mainwindow.cpp \
+    src/view.cpp
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
 
 # Default rules for deployment.
-include(deployment.pri)
+include(src/deployment.pri)
 
 HEADERS += \
-    mainwindow.h \
-    view.h
+    src/mainwindow.h \
+    src/view.h

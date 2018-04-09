@@ -1,5 +1,4 @@
-#ifndef VIEW
-#define VIEW
+#pragma once
 
 #include <QWebView>
 #include <QWebPage>
@@ -9,14 +8,12 @@ class View : public QWebView
 {
     Q_OBJECT
 
-    public:
-        View(QWidget* parent);
-        void loadPage(QString uri);
-        void loadImage(QString uri);
+public:
+    explicit View(QWidget* parent);
 
-    private slots:
-        void handleAuthRequest(QNetworkReply*, QAuthenticator*);
+    void loadPage(const QString &uri);
+    void loadImage(const QString &uri);
+
+private slots:
+    void handleAuthRequest(QNetworkReply*, QAuthenticator*);
 };
-
-
-#endif // VIEW
