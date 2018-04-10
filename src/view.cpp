@@ -31,24 +31,22 @@ void View::loadImage(const QString &preUri)
         qDebug() << "Location: Local File";
         uri = QUrl::fromLocalFile(fileInfo.absoluteFilePath()).toEncoded();
     }
+    else if (preUri == "null")
+    {
+        qDebug() << "Black page";
+    }
     else
     {
         qDebug() << "Location: Remote URL";
         uri = preUri;
     }
 
-    QString script = "window.setimg = function (" + uri + ") {"
-                     " var i = new Image();"
-                     " i.onload = function() {"
-                     "   document.body.style.backgroundSize = i.width > window.innerWidth || i.height > window.innerHeight ? 'contain' : 'auto';"
-                     "   document.body.style.backgroundImage = 'url(' + " + uri + " + ')';"
-                     " }"
-                     " i.src =" + uri + ";"
-                     "}";
-    QString styles = "background-image: url(" + uri + "); background-color: rgb(0, 0, 0); background-size: contain; background-position: 50% 50%; background-repeat: no-repeat no-repeat;";
+    QString script = "window.setimg=function(n){var o=new Image;o.onload=function()"
+                     "{document.body.style.backgroundSize=o.width>window.innerWidth||o.height>window.innerHeight?\"contain\":\"auto\",document.body.style.backgroundImage=\"url(\"+n+\")\"},o.src=n};";
+    QString styles = "background: #000 center no-repeat";
 
     stop();
-    setHtml("<html><head><script>" + script + "</script></head><body style='" + styles + "'></body></html>");
+    setHtml("<html><head><script>" + script + "</script></head><body onload='window.setimg(\"" + uri + "\");' style='" + styles + "'></body></html>");
 }
 
 void View::handleAuthRequest(QNetworkReply* reply, QAuthenticator* auth)
