@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += qml quick webkit webkitwidgets dbus
+QT += webkit webkitwidgets dbus
 CONFIG += c++11
 
 SOURCES += src/main.cpp \
