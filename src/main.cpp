@@ -8,6 +8,11 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
+
+    QCursor cursor(Qt::BlankCursor);
+    QApplication::setOverrideCursor(cursor);
+    QApplication::changeOverrideCursor(cursor);
+
     MainWindow *window = new MainWindow();
     window -> show();
 
